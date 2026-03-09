@@ -4,7 +4,7 @@ go 1.25
 
 require (
 	github.com/caddyserver/caddy/v2 v2.10.2
-	github.com/nic-at/libdns-rcodezeroacme v0.1.2
+	github.com/nic-at/libdns-rcodezero-acme v0.1.2
 )
 
 require (
