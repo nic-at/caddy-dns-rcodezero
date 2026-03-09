@@ -21,7 +21,10 @@ jobs:
         run: go install github.com/caddyserver/xcaddy/cmd/xcaddy@latest
 
       - name: Build Caddy with local DNS module
-        run: xcaddy build --with ://github.com.
+        run: |
+          # Extrahiert den Modulnamen automatisch aus der go.mod
+          MODULE_NAME=$(go list -m)
+          xcaddy build --with $MODULE_NAME=.
 
       - name: Generate the Caddyfile
           # A Caddyfile that references the provider (won't actually issue certs in this test)
