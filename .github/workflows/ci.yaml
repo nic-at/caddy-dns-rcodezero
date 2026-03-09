@@ -1,0 +1,46 @@
+name: Test Caddy 
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        go: ["1.25"]
+    steps:
+      - name: Checkout Code
+        uses: [actions/checkout](https://github.com)@v4
+
+      - name: Setup Go
+        uses: [actions/setup-go](https://github.com)@v6
+        with:
+          go-version: ${{ matrix.go }}
+          cache: true
+
+      - name: Install xcaddy
+        run: go install github.com/caddyserver/xcaddy/cmd/xcaddy@latest
+
+      - name: Build Caddy with local DNS module
+        run: xcaddy build --with ://github.com.
+
+      - name: Generate the Caddyfile
+          # A Caddyfile that references the provider (won't actually issue certs in this test)
+        run: printf '%s\n' \
+          '{' \
+          '  email test@example.invalid' \
+          '}' \
+          '' \
+          'example.invalid {' \
+          '  tls {' \
+          '    dns rcodezero {' \
+          '      api_token abc123' \
+          '      base_url  https://my.rcodezero.at' \
+          '    }' \
+          '  }' \
+          '  respond "ok"' \
+          '}' \
+          > /tmp/Caddyfile
+
+      - name: Validate Caddyfile
+        run: ./caddy adapt --config /tmp/Caddyfile --adapter caddyfile > /tmp/adapted.json
+

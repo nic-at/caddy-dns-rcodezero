@@ -2,7 +2,7 @@ FROM docker.io/caddy:2-builder AS builder
 WORKDIR /src
 COPY . .
 RUN xcaddy build \
-    --with github.com/kagescode/caddy-dns-rcodezero=/src \
+    --with github.com/nic-at/caddy-dns-rcodezero=/src \
     --output /caddy
 
 FROM docker.io/caddy:2
