@@ -1,10 +1,10 @@
-module github.com/kagescode/caddy-dns-rcodezero
+module github.com/nic-at/caddy-dns-rcodezero
 
 go 1.25
 
 require (
 	github.com/caddyserver/caddy/v2 v2.10.2
-	github.com/kagescode/libdns-rcodezeroacme v0.1.2
+	github.com/nic-at/libdns-rcodezeroacme v0.1.2
 )
 
 require (
@@ -42,4 +42,3 @@ require (
 	google.golang.org/protobuf v1.36.6 // indirect
 )
 
-replace github.com/kagescode/libdns-rcodezeroacme => ../libdns-rcodezeroacme
