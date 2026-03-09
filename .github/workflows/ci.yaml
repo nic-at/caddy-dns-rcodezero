@@ -9,10 +9,10 @@ jobs:
         go: ["1.25"]
     steps:
       - name: Checkout Code
-        uses: [actions/checkout](https://github.com)@v4
+        uses: actions/checkout@v4
 
       - name: Setup Go
-        uses: [actions/setup-go](https://github.com)@v6
+        uses: actions/setup-go@v6
         with:
           go-version: ${{ matrix.go }}
           cache: true
