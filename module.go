@@ -5,7 +5,7 @@ import (
 	"github.com/caddyserver/caddy/v2"
 	"github.com/caddyserver/caddy/v2/caddyconfig/caddyfile"
 
-	libdnsrcodezeroacme "github.com/kagescode/libdns-rcodezeroacme"
+	libdnsrcodezeroacme "github.com/nic-at/libdns-rcodezero-acme"
 )
 
 // Provider lets Caddy solve the ACME DNS challenge by manipulating DNS records
